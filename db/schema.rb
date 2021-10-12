@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 2021_10_12_065844) do
   enable_extension "plpgsql"
 
   create_table "sports", force: :cascade do |t|
-    t.string "name_ru", null: false
-    t.string "name_en", null: false
-    t.string "slug", null: false
+    t.string "name_ru", limit: 20, null: false
+    t.string "name_en", limit: 15, null: false
+    t.string "slug", limit: 15, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name_en"], name: "index_sports_on_name_en"
