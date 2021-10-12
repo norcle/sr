@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 class Sport < ApplicationRecord
-  validates :name_ru, presence: true, uniqueness: true, length: { minimum: 1, maximum: 20 }
-  validates :name_en, presence: true, uniqueness: true, length: { minimum: 1, maximum: 15 }
-  validates :slug,    presence: true, uniqueness: true, length: { minimum: 1, maximum: 15 }
+  validates :name_ru, presence: true, uniqueness: true, length: { minimum: 3, maximum: 20 }
+  validates :name_en, presence: true, uniqueness: true, length: { minimum: 3, maximum: 15 }
+  validates :slug,    presence: true, uniqueness: true, length: { minimum: 3, maximum: 15 }
 end
