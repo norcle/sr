@@ -20,7 +20,6 @@ end
 group :development do
   gem 'annotate', '~> 3.1'
   gem 'factory_bot', '~> 6.2'
-  gem 'faker'
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'rspec-rails', '~> 5.0'
@@ -32,6 +31,11 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'faker'
+end
+
+group :test do
+  gem 'database_cleaner-active_record'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
