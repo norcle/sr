@@ -13,4 +13,8 @@ class Sport < ApplicationRecord
   validates :name_ru, presence: true, uniqueness: true, length: { minimum: 3, maximum: 20 }
   validates :name_en, presence: true, uniqueness: true, length: { minimum: 3, maximum: 15 }
   validates :slug,    presence: true, uniqueness: true, length: { minimum: 3, maximum: 15 }
+
+  def name
+    name_ru || name_en
+  end
 end
