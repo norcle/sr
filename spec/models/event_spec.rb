@@ -26,5 +26,4 @@ RSpec.describe Event, type: :model do
       expect(@event.parent_id).to match(1)
     end
   end
-
 end
