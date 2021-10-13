@@ -7,6 +7,9 @@ class CreateLeagues < ActiveRecord::Migration[6.1]
       t.string :slug, null: false, uniq: true, limit: 15
       t.references :sport, null: false, foreign_key: true
       t.references :bookmaker, null: false, foreign_key: true
+      t.index :name_en
+      t.index :name_ru
+      t.index :slug
 
       t.timestamps
     end

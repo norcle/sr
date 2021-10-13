@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_13_043637) do
+ActiveRecord::Schema.define(version: 2021_10_13_111710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,9 @@ ActiveRecord::Schema.define(version: 2021_10_13_043637) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bookmaker_id"], name: "index_leagues_on_bookmaker_id"
+    t.index ["name_en"], name: "index_leagues_on_name_en"
+    t.index ["name_ru"], name: "index_leagues_on_name_ru"
+    t.index ["slug"], name: "index_leagues_on_slug"
     t.index ["sport_id"], name: "index_leagues_on_sport_id"
   end
 
@@ -49,6 +52,24 @@ ActiveRecord::Schema.define(version: 2021_10_13_043637) do
     t.index ["slug"], name: "index_sports_on_slug"
   end
 
+  create_table "teams", force: :cascade do |t|
+    t.bigint "bookmaker_id", null: false
+    t.bigint "sport_id", null: false
+    t.string "name_ru", limit: 20, null: false
+    t.string "name_en", limit: 20, null: false
+    t.string "slug", limit: 20, null: false
+    t.integer "sex", limit: 2
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bookmaker_id"], name: "index_teams_on_bookmaker_id"
+    t.index ["name_en"], name: "index_teams_on_name_en"
+    t.index ["name_ru"], name: "index_teams_on_name_ru"
+    t.index ["slug"], name: "index_teams_on_slug"
+    t.index ["sport_id"], name: "index_teams_on_sport_id"
+  end
+
   add_foreign_key "leagues", "bookmakers"
   add_foreign_key "leagues", "sports"
+  add_foreign_key "teams", "bookmakers"
+  add_foreign_key "teams", "sports"
 end
