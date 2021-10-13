@@ -5,6 +5,7 @@
 #  id           :bigint           not null, primary key
 #  bookmaker_id :bigint           not null
 #  sport_id     :bigint           not null
+#  external_id  :string
 #  name_ru      :string(20)       not null
 #  name_en      :string(20)       not null
 #  slug         :string(20)       not null
@@ -16,6 +17,7 @@ class Team < ApplicationRecord
   validates :name_ru, presence: true, uniqueness: true, length: { minimum: 3, maximum: 20 }
   validates :name_en, presence: true, uniqueness: true, length: { minimum: 3, maximum: 20 }
   validates :slug,    presence: true, uniqueness: true, length: { minimum: 3, maximum: 20 }
+  validates :external_id, presence: false, uniqueness: true
 
   belongs_to :bookmaker
   belongs_to :sport
