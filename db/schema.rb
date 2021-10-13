@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_12_065844) do
+ActiveRecord::Schema.define(version: 2021_10_13_041546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookmakers", force: :cascade do |t|
+    t.string "name_en", limit: 10, null: false
+    t.string "name_ru", limit: 10, null: false
+    t.string "slug", limit: 10, null: false
+    t.string "url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["slug"], name: "index_bookmakers_on_slug"
+  end
 
   create_table "sports", force: :cascade do |t|
     t.string "name_ru", limit: 20, null: false
