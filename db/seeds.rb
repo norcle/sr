@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+fonbet = Bookmaker.first_or_create(name_ru: 'Фонбет', name_en: 'Fonbet', slug: 'fonbet', url: 'https://www.fonbet.ru/live/')
+basketball = Sport.first_or_create(name_ru: 'Баскетбол', name_en: 'Basketball', slug: 'basketball')
