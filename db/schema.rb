@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2021_10_13_111710) do
   create_table "teams", force: :cascade do |t|
     t.bigint "bookmaker_id", null: false
     t.bigint "sport_id", null: false
+    t.string "external_id"
     t.string "name_ru", limit: 20, null: false
     t.string "name_en", limit: 20, null: false
     t.string "slug", limit: 20, null: false
@@ -62,6 +63,7 @@ ActiveRecord::Schema.define(version: 2021_10_13_111710) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bookmaker_id"], name: "index_teams_on_bookmaker_id"
+    t.index ["external_id"], name: "index_teams_on_external_id"
     t.index ["name_en"], name: "index_teams_on_name_en"
     t.index ["name_ru"], name: "index_teams_on_name_ru"
     t.index ["slug"], name: "index_teams_on_slug"
