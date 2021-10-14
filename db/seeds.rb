@@ -55,5 +55,3 @@ FactorKey.find_or_create_by id: 18, name_ru: 'Тотал1', name_en: 'Total1', e
 FactorKey.find_or_create_by id: 19, name_ru: 'Тотал2', name_en: 'Total2', external_id: 941
 FactorKey.find_or_create_by id: 20, name_ru: 'Фора1', name_en: 'Fora1', external_id: 927
 FactorKey.find_or_create_by id: 21, name_ru: 'Фора2', name_en: 'Fora2', external_id: 928
-FactorKey.find_or_create_by id: 22, name_ru: 'Score1', name_en: 'Score1', external_id: 0
-FactorKey.find_or_create_by id: 23, name_ru: 'Score2', name_en: 'Score2', external_id: 0

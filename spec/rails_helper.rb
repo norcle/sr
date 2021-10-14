@@ -25,6 +25,10 @@ RSpec.configure do |config|
     DatabaseCleaner.cleaning do
       example.run
     end
-    Rails.application.load_seed 
+    Rails.application.load_seed
+  end
+
+  config.before(:suite) do
+    Rails.application.load_seed # loading seeds
   end
 end

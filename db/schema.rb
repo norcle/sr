@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2021_10_13_141310) do
     t.bigint "event_id", null: false
     t.bigint "factor_key_id", null: false
     t.integer "parameter"
-    t.decimal "value", precision: 4, scale: 2, null: false
+    t.decimal "value", precision: 7, scale: 2, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["event_id"], name: "index_factors_on_event_id"
