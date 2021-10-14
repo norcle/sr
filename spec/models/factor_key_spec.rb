@@ -14,7 +14,7 @@ require 'rails_helper'
 RSpec.describe FactorKey, type: :model do
   describe 'methods' do
     before do
-      @factor_key = create(:factor_key)
+      @factor_key = FactorKey.find(1)
     end
     it 'parent' do
       expect(@factor_key.name).to match(@factor_key.name_ru)
