@@ -15,7 +15,7 @@ require 'rails_helper'
 RSpec.describe Bookmaker, type: :model do
   describe 'methods' do
     before do
-      @bookmaker = create(:bookmaker)
+      @bookmaker = Bookmaker.find(1)
     end
     it 'name' do
       expect(@bookmaker.name).to match(@bookmaker.name_ru)
