@@ -14,7 +14,7 @@ require 'rails_helper'
 RSpec.describe Sport, type: :model do
   describe 'methods' do
     before do
-      @sport = create(:sport)
+      @sport = Sport.find(1)
     end
     it 'name' do
       expect(@sport.name).to match(@sport.name_ru)

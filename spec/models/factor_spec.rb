@@ -15,10 +15,10 @@ require 'rails_helper'
 RSpec.describe Factor, type: :model do
   describe 'methods' do
     before do
-      @factor_key = create(:factor_key)
+      @factor = create(:factor, factor_key: FactorKey.find(1))
     end
     it 'factor create' do
-      expect(@factor_key.id).to be_truthy
+      expect(@factor.id).to be_truthy
     end
   end
 end

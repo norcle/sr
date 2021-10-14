@@ -12,7 +12,7 @@
 class FactorKey < ApplicationRecord
   validates :name_ru, presence: true, uniqueness: false, length: { minimum: 1, maximum: 20 }
   validates :name_en, presence: true, uniqueness: false, length: { minimum: 1, maximum: 20 }
-  validates :external_id, presence: true, uniqueness: true
+  validates :external_id, presence: true, uniqueness: false
 
   def name
     name_ru || name_en
