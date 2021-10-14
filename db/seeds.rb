@@ -8,6 +8,38 @@
 
 fonbet = Bookmaker.find_or_create_by(id: 1, name_ru: 'Фонбет', name_en: 'Fonbet', slug: 'fonbet', url: 'https://www.fonbet.ru/live/')
 basketball = Sport.find_or_create_by(id: 1, name_ru: 'Баскетбол', name_en: 'Basketball', slug: 'basketball')
+Sport.find_or_create_by name_ru: 'Футбол', id: 2, slug: 'footbal'
+Sport.find_or_create_by name_ru: 'Хоккей', id: 3, slug: 'hokkey'
+Sport.find_or_create_by name_ru: 'Волейбол', id: 4, slug: 'volleyball'
+Sport.find_or_create_by name_ru: 'Теннис', id: 5, slug: 'tennis'
+Sport.find_or_create_by name_ru: 'Настольный теннис', id: 6, slug: 'table_tennis'
+Sport.find_or_create_by name_ru: 'Гандбол', id: 7, slug: 'handball'
+Sport.find_or_create_by name_ru: 'Пляжный волейбол', id: 8, slug: 'beach_volleyball'
+Sport.find_or_create_by name_ru: 'Флорбол', id: 9, slug: 'florball'
+Sport.find_or_create_by name_ru: 'Регби', id: 10, slug: 'rugby'
+Sport.find_or_create_by name_ru: 'Бейсбол', id: 11, slug: 'baseball'
+Sport.find_or_create_by name_ru: 'CounterStrike', id: 12, slug: 'counter_strike'
+Sport.find_or_create_by name_ru: 'Dota 2', id: 13, slug: 'dota_2'
+Sport.find_or_create_by name_ru: 'Rainbow Six Siege', id: 14, slug: 'rainbow_six_siege'
+Sport.find_or_create_by name_ru: 'Cyber Volley', id: 16, slug: 'cyber_volley'
+Sport.find_or_create_by name_ru: 'Backetball 3x3', id: 17, slug: 'basketball_3x3'
+Sport.find_or_create_by name_ru: 'Cyber Regby', id: 18, slug: 'cyber_rugby'
+Sport.find_or_create_by name_ru: 'Пляжный футбол', id: 15, slug: 'beach_football'
+Sport.find_or_create_by name_ru: 'Valorant', id: 19, slug: 'valorant'
+Sport.find_or_create_by name_ru: 'MMA', id: 20, slug: 'mma'
+Sport.find_or_create_by name_ru: 'Футзал', id: 21, slug: 'footcort'
+Sport.find_or_create_by name_ru: 'Дартс', id: 22, slug: 'darts'
+Sport.find_or_create_by name_ru: 'Футбол 8х8', id: 23, slug: 'football_8x8'
+Sport.find_or_create_by name_ru: 'Водное поло', id: 24, slug: 'swim_pool'
+Sport.find_or_create_by name_ru: 'NHL20', id: 25, slug: 'nhl20'
+Sport.find_or_create_by name_ru: 'Бадминтон', id: 26, slug: 'badminton'
+Sport.find_or_create_by name_ru: 'Австралийский футбол.', id: 27, slug: 'australlian_football'
+Sport.find_or_create_by name_ru: 'Футбол 5х5.', id: 28, slug: 'football_5x5'
+Sport.find_or_create_by name_ru: 'League of legends', id: 29, slug: 'league_of_legends'
+Sport.find_or_create_by name_ru: 'Бокс', id: 30, slug: 'box'
+Sport.find_or_create_by name_ru: 'FIFA 20.', id: 31, slug: 'fifa_20'
+Sport.find_or_create_by name_ru: 'NBA 2K.', id: 32, slug: 'nba_2k'
+
 
 FactorKey.find_or_create_by id: 1, name_ru: 'ScoreHome', name_en: 'ScoreHome', external_id: 0
 FactorKey.find_or_create_by id: 2, name_ru: 'ScoreAway', name_en: 'ScoreAway', external_id: 0
