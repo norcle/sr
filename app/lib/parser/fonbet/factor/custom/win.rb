@@ -6,6 +6,7 @@ class Parser::Fonbet::Factor::Custom::Win < Parser::Fonbet::Factor::Custom::Base
     create_factor(onex, 13)
     create_factor(onetwo, 14)
     create_factor(xtwo, 15)
+    @counter
   end
 
   private
