@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_13_141310) do
+ActiveRecord::Schema.define(version: 2021_10_15_172057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,14 +67,15 @@ ActiveRecord::Schema.define(version: 2021_10_13_141310) do
   end
 
   create_table "leagues", force: :cascade do |t|
-    t.string "name_en", limit: 15, null: false
-    t.string "name_ru", limit: 15, null: false
+    t.string "name_en", null: false
+    t.string "name_ru", null: false
     t.integer "sex", limit: 2
-    t.string "slug", limit: 15, null: false
+    t.string "slug", null: false
     t.bigint "sport_id", null: false
     t.bigint "bookmaker_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "external_id"
     t.index ["bookmaker_id"], name: "index_leagues_on_bookmaker_id"
     t.index ["name_en"], name: "index_leagues_on_name_en"
     t.index ["name_ru"], name: "index_leagues_on_name_ru"
@@ -97,14 +98,16 @@ ActiveRecord::Schema.define(version: 2021_10_13_141310) do
     t.bigint "bookmaker_id", null: false
     t.bigint "sport_id", null: false
     t.string "external_id"
-    t.string "name_ru", limit: 20, null: false
-    t.string "name_en", limit: 20, null: false
-    t.string "slug", limit: 20, null: false
+    t.string "name_ru", null: false
+    t.string "name_en", null: false
+    t.string "slug", null: false
     t.integer "sex", limit: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "league_id", null: false
     t.index ["bookmaker_id"], name: "index_teams_on_bookmaker_id"
     t.index ["external_id"], name: "index_teams_on_external_id"
+    t.index ["league_id"], name: "index_teams_on_league_id"
     t.index ["name_en"], name: "index_teams_on_name_en"
     t.index ["name_ru"], name: "index_teams_on_name_ru"
     t.index ["slug"], name: "index_teams_on_slug"
@@ -119,5 +122,6 @@ ActiveRecord::Schema.define(version: 2021_10_13_141310) do
   add_foreign_key "leagues", "bookmakers"
   add_foreign_key "leagues", "sports"
   add_foreign_key "teams", "bookmakers"
+  add_foreign_key "teams", "leagues"
   add_foreign_key "teams", "sports"
 end

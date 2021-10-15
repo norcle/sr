@@ -6,7 +6,7 @@
 #  event_id      :bigint           not null
 #  factor_key_id :bigint           not null
 #  parameter     :integer
-#  value         :decimal(4, 4)    not null
+#  value         :decimal(7, 2)    not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
