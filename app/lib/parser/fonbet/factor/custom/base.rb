@@ -4,6 +4,7 @@ class Parser::Fonbet::Factor::Custom::Base
   def initialize(event, live_json:)
     @event = event
     @live_json = live_json
+    @counter = 0
   end
 
   def parse
@@ -19,11 +20,11 @@ class Parser::Fonbet::Factor::Custom::Base
     return if factor_key.nil?
     return if factor.try(:[], 'v').nil?
 
-    p factor
     Factor.create! value: factor.try(:[], 'v'),
                    parameter: factor.try(:[], 'p'),
                    factor_key_id: factor_key,
                    event: @event
+    @counter += 1
     write_cache(factor, factor_key)
   end
 

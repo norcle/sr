@@ -1,6 +1,7 @@
 class Parser::Fonbet::Factor::Misc
   @@last_score = {}
   def initialize(event, live_json:)
+    @counter = 0
     @event = event
     @live_json = live_json
   end
@@ -8,6 +9,7 @@ class Parser::Fonbet::Factor::Misc
   def parse
     create_score(1)
     create_score(2)
+    @counter
   end
 
   private
@@ -16,10 +18,10 @@ class Parser::Fonbet::Factor::Misc
     return if last_score_equal(num)
     return if misc.try(:[], "score#{num}").nil?
 
-    p "#{@@last_score[cache_key(num)]} == #{misc["score#{num}"]}"
     Factor.create factor_key_id: num,
                   value: misc["score#{num}"],
                   event: @event
+    @counter += 1
     write_last_score
   end
 

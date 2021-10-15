@@ -9,8 +9,10 @@ class Parser::Fonbet::Factor::Collection
   def parse
     ActiveRecord::Base.transaction do
       @events&.each do |event|
-        Parser::Fonbet::Factor::Misc.new(event, live_json: @live_json).parse
-        Parser::Fonbet::Factor::Custom::Win.new(event, live_json: exclude_factors).parse
+        counter = 0
+        counter += Parser::Fonbet::Factor::Misc.new(event, live_json: @live_json).parse
+        counter += Parser::Fonbet::Factor::Custom::Win.new(event, live_json: exclude_factors).parse
+        event.touch if counter.positive?
       end
     end
   end
