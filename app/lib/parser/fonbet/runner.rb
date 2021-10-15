@@ -12,13 +12,15 @@ class Parser::Fonbet::Runner
 
   def start
     @getter.start
-    sleep 3
+    sleep 1
     event_parser
+    factor_parser
   end
 
   def stop
     @getter.stop
     @event_thread.exit
+    @factor_thread.exit
   end
 
   private
@@ -30,13 +32,21 @@ class Parser::Fonbet::Runner
   def event_parser
     @event_thread = Thread.new do
       loop do
-        puts Benchmark.measure {
-          @events = Parser::Fonbet::Event::Collection.new(@getter.live_json).parse
-        }
-        sleep 1
+        @events = Parser::Fonbet::Event::Collection.new(@getter.live_json).parse
+        sleep 0.9
       end
     end
   end
 
-
+  def factor_parser
+    @factor_thread = Thread.new do
+      loop do
+        p 'factor'
+        puts Benchmark.measure {
+          Parser::Fonbet::Factor::Collection.new(@events, live_json: @getter.live_json).parse
+        }
+        sleep 0.7
+      end
+    end
+  end
 end

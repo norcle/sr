@@ -26,7 +26,7 @@ class Parser::Fonbet::Getter
       loop do
         @live_json_ru = JSON.parse(get_json(lang: 'ru', type: 'live'))
         @live_json_en = JSON.parse(get_json(lang: 'en', type: 'live'))
-        sleep 0.8
+        sleep 0.4
       end
     end
   end

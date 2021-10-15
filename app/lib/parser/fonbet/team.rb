@@ -28,7 +28,7 @@ class Parser::Fonbet::Team
   end
 
   def slug
-    @team_names[:en].downcase.delete('.').delete('-').gsub(' ', '_').html_safe
+    "#{@team_names[:en].downcase.delete('.').delete('-').gsub(' ', '_').html_safe}_#{@team_id}"
   end
 
   def read_cache

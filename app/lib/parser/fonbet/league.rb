@@ -38,7 +38,7 @@ class Parser::Fonbet::League
   end
 
   def slug
-    league_ru['name'].downcase.delete('.').delete('-').gsub(' ', '_').html_safe
+    "#{league_ru['name'].downcase.delete('.').delete('-').gsub(' ', '_').html_safe}_#{external_id}"
   end
   
 
