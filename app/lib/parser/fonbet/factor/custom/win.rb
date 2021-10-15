@@ -3,9 +3,9 @@ class Parser::Fonbet::Factor::Custom::Win < Parser::Fonbet::Factor::Custom::Base
     create_factor(w1, 10)
     create_factor(wx, 11)
     create_factor(w2, 12)
-    # create_factor(onex, 13)
-    # create_factor(onetwo, 14)
-    # create_factor(xtwo, 15)
+    create_factor(onex, 13)
+    create_factor(onetwo, 14)
+    create_factor(xtwo, 15)
   end
 
   private

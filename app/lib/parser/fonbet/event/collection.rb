@@ -23,7 +23,7 @@ class Parser::Fonbet::Event::Collection
   end
 
   def en_event(id)
-    filter_events_en.select { |event| event['id'] == id }.last rescue nil
+    filter_events_en.find { |event| event['id'] == id } rescue nil
   end
 
   def filter_events_ru
@@ -33,5 +33,4 @@ class Parser::Fonbet::Event::Collection
   def filter_events_en
     @filter_events_en ||= @live_json.en['events']
   end
-
 end

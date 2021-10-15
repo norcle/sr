@@ -43,10 +43,10 @@ class Parser::Fonbet::League
   
 
   def league_ru
-    @league_ru ||= @live_json.ru['sports'].select { |sport| sport['id'] == @sport_id }.last
+    @league_ru ||= @live_json.ru['sports'].find { |sport| sport['id'] == @sport_id }
   end
 
   def league_en
-    @league_en ||= @live_json.ru['sports'].select { |sport| sport['id'] == @sport_id }.last
+    @league_en ||= @live_json.ru['sports'].find { |sport| sport['id'] == @sport_id }
   end
 end

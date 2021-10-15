@@ -37,6 +37,6 @@ class Parser::Fonbet::Factor::Misc
   end
 
   def misc
-    @misc ||= @live_json.ru['eventMiscs'].select { |misc| misc['id'] == @event.external_id.to_i }.last rescue nil
+    @misc ||= @live_json.ru['eventMiscs'].find { |misc| misc['id'] == @event.external_id.to_i }
   end
 end

@@ -42,10 +42,8 @@ class Parser::Fonbet::Factor::Custom::Base
   end
 
   def find_factor(factor_id)
-    #УЗКОЕ МЕСТО
-    # factor = @live_json.select { |x| x['e'] == @event.external_id.to_i && x['f'] == factor_id }.last
-    # { 'v': factor.try(:[], 'v'), 'p': factor.try(:[], 'p') }
-    { 'v': 1, 'p': nil }
+    factor = @live_json.find { |x| x['e'] == @event.external_id.to_i && x['f'] == factor_id }
+    { 'v': factor.try(:[], 'v'), 'p': factor.try(:[], 'p') }
   end
 end
 
