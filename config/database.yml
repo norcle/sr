@@ -8,6 +8,7 @@ default: &default
 development:
   <<: *default
   database: sportrender_development
+  pool: 1000
 
 test:
   <<: *default
