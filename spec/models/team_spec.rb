@@ -6,12 +6,13 @@
 #  bookmaker_id :bigint           not null
 #  sport_id     :bigint           not null
 #  external_id  :string
-#  name_ru      :string(20)       not null
-#  name_en      :string(20)       not null
-#  slug         :string(20)       not null
+#  name_ru      :string           not null
+#  name_en      :string           not null
+#  slug         :string           not null
 #  sex          :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  league_id    :bigint           not null
 #
 require 'rails_helper'
 

@@ -94,6 +94,7 @@ GEM
       railties (>= 5.0.0)
     faker (2.19.0)
       i18n (>= 1.6, < 2)
+    fast_jsonparser (0.5.0)
     ffi (1.15.4)
     globalid (0.5.2)
       activesupport (>= 5.0)
@@ -241,6 +242,7 @@ DEPENDENCIES
   factory_bot (~> 6.2)
   factory_bot_rails
   faker
+  fast_jsonparser (~> 0.5.0)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg (~> 1.1)

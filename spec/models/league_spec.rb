@@ -3,14 +3,15 @@
 # Table name: leagues
 #
 #  id           :bigint           not null, primary key
-#  name_en      :string(15)       not null
-#  name_ru      :string(15)       not null
+#  name_en      :string           not null
+#  name_ru      :string           not null
 #  sex          :integer
-#  slug         :string(15)       not null
+#  slug         :string           not null
 #  sport_id     :bigint           not null
 #  bookmaker_id :bigint           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  external_id  :bigint
 #
 require 'rails_helper'
 
