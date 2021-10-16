@@ -1,8 +1,8 @@
 class Parser::Fonbet::Runner
   HOST = 'https://line18.bkfon-resources.com'.freeze
 
-  def initialize
-    @getter = Parser::Fonbet::Getter.new
+  def initialize(getter: Parser::Fonbet::Getter.new)
+    @getter = getter
   end
 
   def status
@@ -24,10 +24,6 @@ class Parser::Fonbet::Runner
   end
 
   private
-
-  def live_json 
-    Struct.new
-  end
 
   def event_parser
     @event_thread = Thread.new do
