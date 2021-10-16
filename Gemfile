@@ -28,6 +28,7 @@ group :development do
 end
 
 group :test do
+  gem "webmock", "~> 3.14"
   gem 'capybara', '>= 3.26'
   gem 'factory_bot', '~> 6.2'
   gem 'factory_bot_rails'
@@ -43,3 +44,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "fast_jsonparser", "~> 0.5.0"
+

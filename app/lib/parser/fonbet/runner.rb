@@ -1,18 +1,23 @@
 class Parser::Fonbet::Runner
-  HOST = 'https://line18.bkfon-resources.com'.freeze
+  attr_reader :getter, :event_thread, :factor_thread
 
-  def initialize
-    @getter = Parser::Fonbet::Getter.new
+  def initialize(options)
+    @events = []
+    @getter = options.delete(:getter) || Parser::Fonbet::Getter.new
+    @event_parser = options.delete(:event_parser) || Parser::Fonbet::Event::Collection
+    @factor_parser = options.delete(:factor_parser) || Parser::Fonbet::Factor::Collection
   end
 
   def status
-    p @event_thread.status
-    p @getter.status
+    {
+      event: @event_thread.status,
+      factor: @factor_thread.status,
+      getter: @getter.status
+    }
   end
 
   def start
     @getter.start
-    sleep 1
     event_parser
     factor_parser
   end
@@ -25,15 +30,13 @@ class Parser::Fonbet::Runner
 
   private
 
-  def live_json 
-    Struct.new
-  end
-
   def event_parser
     @event_thread = Thread.new do
       loop do
-        @events = Parser::Fonbet::Event::Collection.new(@getter.live_json).parse
         sleep 0.9
+        next if Rails.env.test?
+
+        @events = @event_parser.new(@getter.live_json).parse
       end
     end
   end
@@ -41,11 +44,12 @@ class Parser::Fonbet::Runner
   def factor_parser
     @factor_thread = Thread.new do
       loop do
-        p 'factor'
-        puts Benchmark.measure {
-          Parser::Fonbet::Factor::Collection.new(@events, live_json: @getter.live_json).parse
-        }
         sleep 0.7
+        next if Rails.env.test?
+
+        puts Benchmark.measure {
+          @factor_parser.new(@events, live_json: @getter.live_json).parse unless @events == []
+        }
       end
     end
   end
