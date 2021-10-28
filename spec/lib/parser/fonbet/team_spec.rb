@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Parser::Fonbet::Event::Entity do
+RSpec.describe Parser::Fonbet::Team do
   let(:live_json) do
     @multilang = Struct.new(:ru, :en)
     @ru = JSON.parse(open('spec/fixtures/json/fonbet.json').read)
@@ -29,7 +29,13 @@ RSpec.describe Parser::Fonbet::Event::Entity do
     }
     { 'ru': ru, 'en': ru }.with_indifferent_access
   end
-  let(:entity) { described_class.new(event, live_json: live_json) }
+  let(:team_names) do
+    {
+      ru: event[:ru]["team1"],
+      en: event[:en]["team1"]
+    }
+  end
+  let(:team) { described_class.new(team_id: event['ru']['team1Id'], league: create(:league), team_names: team_names) }
 
   before do
     Parser::Fonbet::Event::Entity.clear_cache
@@ -39,9 +45,11 @@ RSpec.describe Parser::Fonbet::Event::Entity do
 
   describe 'public' do
     it 'parse' do
-      entity.parse
-      event_db = Event.find_by(external_id: event['ru']['id'].to_s)
-      expect(event_db).to be_truthy
+      team.parse
+      team_db = Team.find_by(external_id: event['ru']['team1Id'])
+      expect(team_db).to be_truthy
+      expect(team_db.name_ru).to match(event['ru']['team1'])
+      expect(team_db.name_en).to match(event['en']['team1'])
     end
   end
 end
