@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Parser::Fonbet::Event::Entity do
+RSpec.describe Parser::Fonbet::League do
   let(:live_json) do
     @multilang = Struct.new(:ru, :en)
     @ru = JSON.parse(open('spec/fixtures/json/fonbet.json').read)
@@ -29,7 +29,9 @@ RSpec.describe Parser::Fonbet::Event::Entity do
     }
     { 'ru': ru, 'en': ru }.with_indifferent_access
   end
-  let(:entity) { described_class.new(event, live_json: live_json) }
+  let(:league_ru) { live_json.ru['sports'].find { |sport| sport['id'] == event['ru']['sportId'] } }
+  let(:league_en) { live_json.ru['sports'].find { |sport| sport['id'] == event['en']['sportId'] } }
+  let(:league) { described_class.new(sport_id: event['ru']['sportId'], live_json: live_json) }
 
   before do
     Parser::Fonbet::Event::Entity.clear_cache
@@ -39,15 +41,11 @@ RSpec.describe Parser::Fonbet::Event::Entity do
 
   describe 'public' do
     it 'parse' do
-      entity.parse
-      event_db = Event.find_by(external_id: event['ru']['id'].to_s)
-      expect(event_db).to be_truthy
-      expect(event_db.team1.name_ru).to match(event['ru']['team1'])
-      expect(event_db.team2.name_ru).to match(event['ru']['team2'])
-      expect(event_db.team1.name_en).to match(event['en']['team1'])
-      expect(event_db.team2.name_en).to match(event['en']['team2'])
-      expect(event_db.team1.external_id).to match(event['ru']['team1Id'].to_s)
-      expect(event_db.team2.external_id).to match(event['ru']['team2Id'].to_s)
+      league.parse
+      league_db = League.find_by(external_id: event['ru']['sportId'])
+      expect(league_db).to be_truthy
+      expect(league_db.name_ru).to match(league_ru['name'])
+      expect(league_db.name_en).to match(league_en['name'])
     end
   end
 end
