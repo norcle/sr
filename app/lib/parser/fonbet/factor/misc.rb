@@ -12,6 +12,10 @@ class Parser::Fonbet::Factor::Misc
     @counter
   end
 
+  def self.clear_cache
+    @@last_score = {}
+  end
+
   private
 
   def create_score(num)
