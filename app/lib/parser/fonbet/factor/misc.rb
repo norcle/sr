@@ -26,12 +26,11 @@ class Parser::Fonbet::Factor::Misc
                   value: misc["score#{num}"],
                   event: @event
     @counter += 1
-    write_last_score
+    write_last_score(num)
   end
 
-  def write_last_score
-    @@last_score[cache_key(1)] = misc['score1']
-    @@last_score[cache_key(2)] = misc['score2']
+  def write_last_score(num)
+    @@last_score[cache_key(num)] = misc["score#{num}"]
   end
 
   def last_score_equal(num)
