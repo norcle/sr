@@ -11,6 +11,10 @@ class Parser::Fonbet::Team
     p create_team
   end
 
+  def self.clear_cache
+    @@teams = {}
+  end
+
   private
 
   def create_team

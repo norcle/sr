@@ -8,7 +8,6 @@ class Parser::Fonbet::Event::Entity
 
   def parse
     return read_cache if read_cache
-
     event = Event.find_or_create_by! external_id: id,
                                      team1: team1,
                                      team2: team2,
@@ -20,7 +19,15 @@ class Parser::Fonbet::Event::Entity
     write_cache(event)
   end
 
+  def self.clear_cache
+    @@events = {}
+  end
+
   private
+
+  def cached_events
+    @@events
+  end
 
   def read_cache
     @read_cache ||= @@events[id]

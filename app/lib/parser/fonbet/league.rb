@@ -10,6 +10,10 @@ class Parser::Fonbet::League
     create_league
   end
 
+  def self.clear_cache
+    @@league_ids = {}
+  end
+
   private
 
   def create_league
