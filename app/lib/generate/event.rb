@@ -61,12 +61,12 @@ class Generate::Event
   end
 
   def create_league
-    League.find_or_create_by! name_ru: 'Тестовая лига',
-                              name_en: 'Test League',
-                              slug: 'test_league',
-                              sex: 0,
-                              bookmaker: @bookmaker,
-                              sport: @sport
+    @create_league ||= League.find_or_create_by! name_ru: 'Тестовая лига',
+                                                 name_en: 'Test League',
+                                                 slug: 'test_league',
+                                                 sex: 0,
+                                                 bookmaker: @bookmaker,
+                                                 sport: @sport
   end
 
   def create_team1
@@ -75,6 +75,7 @@ class Generate::Event
                             slug: 'team1',
                             external_id: 'team1',
                             sex: 0,
+                            league: create_league,
                             bookmaker: @bookmaker,
                             sport: @sport
   end
@@ -85,6 +86,7 @@ class Generate::Event
                             slug: 'team2',
                             external_id: 'team2',
                             sex: 0,
+                            league: create_league,
                             bookmaker: @bookmaker,
                             sport: @sport
   end

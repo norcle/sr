@@ -11,6 +11,10 @@ class Parser::Fonbet::Factor::Custom::Base
     raise NotImplementedYet
   end
 
+  def self.clear_cache
+    @@last_factors = {}
+  end
+
   private
 
   def create_factor(factor, factor_key)
