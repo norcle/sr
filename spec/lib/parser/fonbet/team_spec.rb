@@ -7,27 +7,7 @@ RSpec.describe Parser::Fonbet::Team do
     @multilang.new(@ru, @ru)
   end
   let(:event) do
-    ru = {
-      id: 30516658,
-      sortOrder: '1a007c9-oOKm',
-      level: 1,
-      num: 39435,
-      sportId: 71239,
-      kind: 1,
-      rootKind: 1,
-      state: {willBeLive: true},
-      team1Id: 377094,
-      team2Id: 400908,
-      team1: 'Цзилинь Нортист Тайгерз',
-      team2: 'Нанкин Манки Кингс',
-      statisticsType: 'BetRadar',
-      name: '',
-      namePrefix: '',
-      startTime: 1634358600,
-      place: 'live',
-      priority: 4
-    }
-    { 'ru': ru, 'en': ru }.with_indifferent_access
+    { 'ru': live_json['ru']['events'].first, 'en': live_json['en']['events'].first }.with_indifferent_access
   end
   let(:team_names) do
     {
