@@ -8,6 +8,8 @@ class Parser::Fonbet::Event::Entity
 
   def parse
     return read_cache if read_cache
+    return if sport.nil?
+
     event = Event.find_or_create_by! external_id: id,
                                      team1: team1,
                                      team2: team2,

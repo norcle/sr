@@ -19,33 +19,20 @@ class Parser::Fonbet::Sport
   def create_sport
     return cache_sport if cache_sport
 
-    sport = Sport.find_by name_en: sport_en['name']
-
+    sport = Sport.find_by name_ru: sport_ru['name']
     write_cache(sport)
   end
 
   def cache_sport
-    @cache_sport ||= @@sport_ids[external_id] if external_id
+    @cache_sport ||= @@sport_ids[parent_id] if parent_id
   end
 
   def write_cache(sport)
-    @@sport_ids[external_id] = sport
-  end
-
-  def external_id
-    @external_id ||= parent_id['id'] rescue nil
-  end
-
-  def slug
-    "#{sport_en['name'].downcase.delete('.').delete('-').gsub(' ', '_').html_safe}"
+    @@sport_ids[parent_id] = sport
   end
 
   def sport_ru
     @sport_ru ||= @live_json.ru['sports'].find { |sport| sport['id'] == parent_id }
-  end
-
-  def sport_en
-    @sport_en ||= @live_json.en['sports'].find { |sport| sport['id'] == parent_id }
   end
 
   def parent_id
