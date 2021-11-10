@@ -22,7 +22,7 @@ RSpec.describe Parser::Fonbet::Sport do
       sport.parse
       sport_db = Sport.find_by(name_ru: 'Баскетбол')
       expect(sport_db).to be_truthy
-      expect(sport_db.name_en).to match('Баскетбол')
+      expect(sport_db.name_en).to match('Basketball')
     end
   end
 end

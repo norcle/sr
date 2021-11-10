@@ -19,9 +19,8 @@ class Parser::Fonbet::Sport
   def create_sport
     return cache_sport if cache_sport
 
-    sport = Sport.find_or_create_by! name_ru: sport_ru['name'],
-                                     name_en: sport_en['name'],
-                                     slug: slug
+    sport = Sport.find_by name_en: sport_en['name']
+
     write_cache(sport)
   end
 
@@ -38,7 +37,7 @@ class Parser::Fonbet::Sport
   end
 
   def slug
-    "#{sport_en['name'].downcase.delete('.').delete('-').gsub(' ', '_').html_safe}_#{external_id}"
+    "#{sport_en['name'].downcase.delete('.').delete('-').gsub(' ', '_').html_safe}"
   end
 
   def sport_ru
