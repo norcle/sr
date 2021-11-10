@@ -13,7 +13,7 @@ class Parser::Fonbet::Event::Entity
                                      team2: team2,
                                      league: league,
                                      bookmaker_id: 1,
-                                     sport_id: 1,
+                                     sport: sport,
                                      level: 1,
                                      slug: slug
     write_cache(event)
@@ -39,6 +39,10 @@ class Parser::Fonbet::Event::Entity
 
   def slug
     "#{team1.slug}_#{team2.slug}"
+  end
+
+  def sport
+    @sport ||= Parser::Fonbet::Sport.new(sport_id: @event_json[:ru]['sportId'], live_json: @live_json).parse
   end
 
   def team1
