@@ -9,8 +9,8 @@ class Parser::Fonbet::Event::Collection
       events&.each do |event|
         event = { ru: event, en: en_event(event['id']) }
         next if event[:en].nil? || event[:ru].nil?
-
-        @events_collection << Parser::Fonbet::Event::Entity.new(event, live_json: @live_json).parse
+        event = Parser::Fonbet::Event::Entity.new(event, live_json: @live_json).parse
+        @events_collection << event if event
       end
     end
     @events_collection
