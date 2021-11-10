@@ -8,9 +8,9 @@
 
 fonbet = Bookmaker.find_or_create_by(id: 1, name_ru: 'Фонбет', name_en: 'Fonbet', slug: 'fonbet', url: 'https://www.fonbet.ru/live/')
 basketball = Sport.find_or_create_by(id: 1, name_ru: 'Баскетбол', name_en: 'Basketball', slug: 'basketball')
-Sport.find_or_create_by name_ru: 'Футбол', id: 2, slug: 'footbal'
-Sport.find_or_create_by name_ru: 'Хоккей', id: 3, slug: 'hokkey'
-Sport.find_or_create_by name_ru: 'Волейбол', id: 4, slug: 'volleyball'
+Sport.find_or_create_by name_ru: 'Футбол', id: 2, slug: 'Footbal'
+Sport.find_or_create_by name_ru: 'Хоккей', id: 3, slug: 'Hokkey'
+Sport.find_or_create_by name_ru: 'Волейбол', id: 4, slug: 'Volleyball'
 Sport.find_or_create_by name_ru: 'Теннис', id: 5, slug: 'tennis'
 Sport.find_or_create_by name_ru: 'Настольный теннис', id: 6, slug: 'table_tennis'
 Sport.find_or_create_by name_ru: 'Гандбол', id: 7, slug: 'handball'

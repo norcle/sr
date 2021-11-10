@@ -1,7 +1,7 @@
 class Parser::Fonbet::Runner
   attr_reader :getter, :event_thread, :factor_thread
 
-  def initialize(options)
+  def initialize(options = [])
     @events = []
     @getter = options.delete(:getter) || Parser::Fonbet::Getter.new
     @event_parser = options.delete(:event_parser) || Parser::Fonbet::Event::Collection
