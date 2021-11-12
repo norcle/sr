@@ -12,6 +12,8 @@ class Parser::Fonbet::Factor::Collection
         counter = 0
         counter += Parser::Fonbet::Factor::Misc.new(event, live_json: @live_json).parse
         counter += Parser::Fonbet::Factor::Custom::Win.new(event, live_json: exclude_factors).parse
+        counter += Parser::Fonbet::Factor::Custom::Total.new(event, live_json: exclude_factors).parse
+        counter += Parser::Fonbet::Factor::Custom::Fora.new(event, live_json: exclude_factors).parse
         event.touch if counter.positive?
       end
     end
