@@ -21,9 +21,24 @@ RSpec.describe Parser::Fonbet::Factor::Custom::Total do
   describe 'public' do
     it 'parse' do
       win.parse
-      total = Factor.find_by(factor_key_id: 16)
-      expect(total.value.to_f).to match(live_json.ru['customFactors'].find { |x| x['e'] == event_id && x['f'] == 930 }['v'])
-      expect(total.parameter).to match(live_json.ru['customFactors'].find { |x| x['e'] == event_id && x['f'] == 930 }['p'])
+      total1 = Factor.find_by(factor_key_id: 16)
+      expect(total1.value.to_f).to match(live_json.ru['customFactors'].find { |x| x['e'] == event_id && x['f'] == 930 }['v'])
+      expect(total1.parameter).to match(live_json.ru['customFactors'].find { |x| x['e'] == event_id && x['f'] == 930 }['p'])
+      total2 = Factor.find_by(factor_key_id: 17)
+      if total2
+        expect(total2.value.to_f).to match(live_json.ru['customFactors'].find { |x| x['e'] == event_id && x['f'] == 931 }['v'])
+        expect(total2.parameter).to match(live_json.ru['customFactors'].find { |x| x['e'] == event_id && x['f'] == 931 }['p'])
+      end
+      total3 = Factor.find_by(factor_key_id: 18)
+      if total3
+        expect(total3.value.to_f).to match(live_json.ru['customFactors'].find { |x| x['e'] == event_id && x['f'] == 940 }['v'])
+        expect(total3.parameter).to match(live_json.ru['customFactors'].find { |x| x['e'] == event_id && x['f'] == 940 }['p'])
+      end
+      total4 = Factor.find_by(factor_key_id: 19)
+      if total4
+        expect(total4.value.to_f).to match(live_json.ru['customFactors'].find { |x| x['e'] == event_id && x['f'] == 941 }['v'])
+        expect(total4.parameter).to match(live_json.ru['customFactors'].find { |x| x['e'] == event_id && x['f'] == 941 }['p'])
+      end
     end
   end
 end
