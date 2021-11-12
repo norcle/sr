@@ -12,14 +12,6 @@ RSpec.describe Parser::Fonbet::Factor::Misc do
 
   let(:event_miscs) { live_json['ru']['eventMiscs'].find {|m| m['id'] == event_id}}
 
-  before do
-    Parser::Fonbet::Event::Entity.clear_cache
-    Parser::Fonbet::League.clear_cache
-    Parser::Fonbet::Team.clear_cache
-    Parser::Fonbet::Factor::Custom::Base.clear_cache
-    Parser::Fonbet::Factor::Misc.clear_cache
-  end
-
   describe 'public' do
     it 'parse' do
       misc.parse

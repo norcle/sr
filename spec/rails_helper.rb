@@ -32,4 +32,12 @@ RSpec.configure do |config|
   config.before(:suite) do
     Rails.application.load_seed # loading seeds
   end
+
+  config.before(:each) do
+    Parser::Fonbet::Event::Entity.clear_cache
+    Parser::Fonbet::League.clear_cache
+    Parser::Fonbet::Team.clear_cache
+    Parser::Fonbet::Factor::Custom::Base.clear_cache
+    Parser::Fonbet::Factor::Misc.clear_cache
+  end
 end

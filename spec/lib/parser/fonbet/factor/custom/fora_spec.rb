@@ -10,14 +10,6 @@ RSpec.describe Parser::Fonbet::Factor::Custom::Fora do
   let(:event) { create(:event, external_id: event_id) }
   let(:fora) { described_class.new(event, live_json: live_json.ru['customFactors']) }
 
-  before do
-    Parser::Fonbet::Event::Entity.clear_cache
-    Parser::Fonbet::League.clear_cache
-    Parser::Fonbet::Team.clear_cache
-    Parser::Fonbet::Factor::Custom::Base.clear_cache
-    Parser::Fonbet::Factor::Misc.clear_cache
-  end
-
   describe 'public' do
     it 'parse' do
       fora.parse

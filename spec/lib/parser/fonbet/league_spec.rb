@@ -13,12 +13,6 @@ RSpec.describe Parser::Fonbet::League do
   let(:league_en) { live_json.ru['sports'].find { |sport| sport['id'] == event['en']['sportId'] } }
   let(:league) { described_class.new(sport_id: event['ru']['sportId'], live_json: live_json) }
 
-  before do
-    Parser::Fonbet::Event::Entity.clear_cache
-    Parser::Fonbet::League.clear_cache
-    Parser::Fonbet::Team.clear_cache
-  end
-
   describe 'public' do
     it 'parse' do
       league.parse

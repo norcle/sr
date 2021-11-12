@@ -11,12 +11,6 @@ RSpec.describe Parser::Fonbet::Sport do
   end
   let(:sport) { described_class.new(sport_id: event['ru']['sportId'], live_json: live_json) }
 
-  before do
-    Parser::Fonbet::Event::Entity.clear_cache
-    Parser::Fonbet::League.clear_cache
-    Parser::Fonbet::Team.clear_cache
-  end
-
   describe 'public' do
     it 'parse' do
       sport.parse
