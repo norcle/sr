@@ -27,7 +27,7 @@
   ],
   "events":[
      {
-        "id":31200603,
+        "id":30516658,
         "sortOrder":"1a007c9-oOKm",
         "level":1,
         "num":39435,
@@ -61,8 +61,8 @@
            "webOnly": true,
            "willBeLive": true
         },
-        "team1Id": 3,
-        "team2Id": 7,
+        "team1Id": 377094,
+        "team2Id": 400908,
         "name": "1-я четверть",
         "namePrefix": "",
         "startTime": 1634358600,
@@ -82,8 +82,8 @@
            "webOnly": true,
            "willBeLive": true
         },
-        "team1Id": 8,
-        "team2Id": 9,
+        "team1Id": 377094,
+        "team2Id": 400908,
         "name": "2-я четверть",
         "namePrefix": "",
         "startTime": 1634358600,

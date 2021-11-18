@@ -5,6 +5,7 @@ class Parser::Fonbet::Runner
     @events = []
     @getter = options.delete(:getter) || Parser::Fonbet::Getter.new
     @event_parser = options.delete(:event_parser) || Parser::Fonbet::Event::Collection
+    @part_parser = options.delete(:part_parser) || Parser::Fonbet::Event::Part
     @factor_parser = options.delete(:factor_parser) || Parser::Fonbet::Factor::Collection
   end
 
@@ -37,6 +38,7 @@ class Parser::Fonbet::Runner
         next if Rails.env.test?
 
         @events = @event_parser.new(@getter.live_json).parse
+        @parts  = @part_parser.new(@getter.live_json).parse
       end
     end
   end

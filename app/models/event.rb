@@ -24,7 +24,8 @@ class Event < ApplicationRecord
 
   has_many :factors, dependent: :destroy
 
-  validates :slug, presence: true, uniqueness: true
+  validates_uniqueness_of :slug, allow_blank: true
+
   validates :level, presence: true
 
   after_touch { p "Ooohh... You touch my talalal #{id}" }
