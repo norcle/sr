@@ -3,8 +3,10 @@ class Parser::Fonbet::Runner
 
   def initialize(options = [])
     @events = []
+    @parts = []
     @getter = options.delete(:getter) || Parser::Fonbet::Getter.new
     @event_parser = options.delete(:event_parser) || Parser::Fonbet::Event::Collection
+    @part_parser = options.delete(:part_parser) || Parser::Fonbet::Event::Part
     @factor_parser = options.delete(:factor_parser) || Parser::Fonbet::Factor::Collection
   end
 
@@ -19,6 +21,7 @@ class Parser::Fonbet::Runner
   def start
     @getter.start
     event_parser
+    part_parser
     factor_parser
   end
 
@@ -41,6 +44,17 @@ class Parser::Fonbet::Runner
     end
   end
 
+  def part_parser
+    @part_thread = Thread.new do
+      loop do
+        sleep 2
+        next if Rails.env.test?
+
+        @parts  = @part_parser.new(@getter.live_json).parse
+      end
+    end
+  end
+
   def factor_parser
     @factor_thread = Thread.new do
       loop do
@@ -49,6 +63,7 @@ class Parser::Fonbet::Runner
 
         puts Benchmark.measure {
           @factor_parser.new(@events, live_json: @getter.live_json).parse unless @events == []
+          @factor_parser.new(@parts, live_json: @getter.live_json).parse unless @parts == []
         }
       end
     end

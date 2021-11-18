@@ -7,22 +7,17 @@ RSpec.describe Parser::Fonbet::Event::Collection do
     @multilang.new(@ru, @ru)
   end
   let(:collection) { described_class.new(live_json) }
-
-  before do
-    Parser::Fonbet::Event::Entity.clear_cache
-    Parser::Fonbet::League.clear_cache
-    Parser::Fonbet::Team.clear_cache
-  end
+  let!(:events) { live_json.ru['events'].select { |x| x['level'] == 1 } }
 
   describe 'public' do
     it 'parse' do
       collection.parse
-      live_json.ru['events'].each do |event|
+      events.each do |event|
         event_db = Event.find_by(external_id: event['id'])
         expect(event_db.team1.name_ru).to match(event['team1'])
         expect(event_db.team2.name_ru).to match(event['team2'])
       end
-      live_json.en['events'].each do |event|
+      events.each do |event|
         event_db = Event.find_by(external_id: event['id'])
         expect(event_db.team1.name_en).to match(event['team1'])
         expect(event_db.team2.name_en).to match(event['team2'])

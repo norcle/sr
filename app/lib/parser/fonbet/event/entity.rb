@@ -1,9 +1,10 @@
 class Parser::Fonbet::Event::Entity
   @@events = {}
   attr_reader :league, :team1, :team2
-  def initialize(event_json, live_json:)
+  def initialize(event_json, live_json:, need_slug: true)
     @event_json = event_json
     @live_json = live_json
+    @need_slug = need_slug
   end
 
   def parse
@@ -11,12 +12,13 @@ class Parser::Fonbet::Event::Entity
     return if sport.nil?
 
     event = Event.find_or_create_by! external_id: id,
+                                     parent_id: parent_id,
                                      team1: team1,
                                      team2: team2,
                                      league: league,
                                      bookmaker_id: 1,
                                      sport: sport,
-                                     level: 1,
+                                     level: level,
                                      slug: slug
     write_cache(event)
   end
@@ -40,7 +42,7 @@ class Parser::Fonbet::Event::Entity
   end
 
   def slug
-    "#{team1.slug}_#{team2.slug}"
+    "#{team1.slug}_#{team2.slug}" if @need_slug
   end
 
   def sport
@@ -57,6 +59,14 @@ class Parser::Fonbet::Event::Entity
 
   def league
     @league ||= Parser::Fonbet::League.new(sport_id: @event_json[:ru]['sportId'], live_json: @live_json).parse
+  end
+
+  def level
+    @level ||= @event_json[:ru]['level']
+  end
+
+  def parent_id
+    @parent_id ||= @event_json[:ru]['parentId'] || 1
   end
 
   def id

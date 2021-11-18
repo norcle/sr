@@ -7,8 +7,8 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.references :league, null: false, foreign_key: true
       t.references :sport, null: false, foreign_key: true
       t.integer :level, null: false, default: 1
-      t.bigint :team1_id, null: false
-      t.bigint :team2_id, null: false
+      t.bigint :team1_id, null: true
+      t.bigint :team2_id, null: true
       t.string :slug
       t.index :slug
       t.index :external_id
