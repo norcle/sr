@@ -1,5 +1,4 @@
 class Parser::Fonbet::Team
-  class EmptyTeamsError < StandardError; end
   @@teams = {}
 
   def initialize(team_id:, team_names:, league:)

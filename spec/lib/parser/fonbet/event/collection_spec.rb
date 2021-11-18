@@ -9,12 +9,6 @@ RSpec.describe Parser::Fonbet::Event::Collection do
   let(:collection) { described_class.new(live_json) }
   let!(:events) { live_json.ru['events'].select { |x| x['level'] == 1 } }
 
-  before do
-    Parser::Fonbet::Event::Entity.clear_cache
-    Parser::Fonbet::League.clear_cache
-    Parser::Fonbet::Team.clear_cache
-  end
-
   describe 'public' do
     it 'parse' do
       collection.parse
