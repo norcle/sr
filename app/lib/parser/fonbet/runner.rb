@@ -20,6 +20,7 @@ class Parser::Fonbet::Runner
   def start
     @getter.start
     event_parser
+    part_parser
     factor_parser
   end
 
@@ -38,6 +39,17 @@ class Parser::Fonbet::Runner
         next if Rails.env.test?
 
         @events = @event_parser.new(@getter.live_json).parse
+        @parts  = @part_parser.new(@getter.live_json).parse
+      end
+    end
+  end
+
+  def part_parser
+    @part_thread = Thread.new do
+      loop do
+        sleep 2
+        next if Rails.env.test?
+
         @parts  = @part_parser.new(@getter.live_json).parse
       end
     end

@@ -61,8 +61,8 @@
            "webOnly": true,
            "willBeLive": true
         },
-        "team1Id": 377094,
-        "team2Id": 400908,
+        "team1Id": 0,
+        "team2Id": 0,
         "name": "1-я четверть",
         "namePrefix": "",
         "startTime": 1634358600,
@@ -82,8 +82,8 @@
            "webOnly": true,
            "willBeLive": true
         },
-        "team1Id": 377094,
-        "team2Id": 400908,
+        "team1Id": 0,
+        "team2Id": 0,
         "name": "2-я четверть",
         "namePrefix": "",
         "startTime": 1634358600,

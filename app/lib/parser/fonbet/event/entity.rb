@@ -21,6 +21,9 @@ class Parser::Fonbet::Event::Entity
                                      level: level,
                                      slug: slug
     write_cache(event)
+  rescue ActiveRecord::RecordInvalid => e
+    p 'Record Invalid'
+    nil
   end
 
   def self.clear_cache

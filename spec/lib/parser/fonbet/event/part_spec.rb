@@ -24,13 +24,19 @@ RSpec.describe Parser::Fonbet::Event::Part do
       part.parse
       events.each do |event|
         event_db = Event.find_by(external_id: event['id'])
-        expect(event_db.team1.external_id).to match(event['team1Id'].to_s)
-        expect(event_db.team2.external_id).to match(event['team2Id'].to_s)
+        expect(event_db.parent_id.to_s).to match(@event.external_id)
+        expect(event_db.level).to eq(2)
       end
+    end
+
+    it 'fail' do
+      part.parse
       events.each do |event|
         event_db = Event.find_by(external_id: event['id'])
-        expect(event_db.team1.external_id).to match(event['team1Id'].to_s)
-        expect(event_db.team2.external_id).to match(event['team2Id'].to_s)
+        expect(event_db).to be_truthy
+        expect(Event.count).to eq(2)
+        expect(Team.count).to  eq(0)
+        expect(League.count).to eq(1)
       end
     end
   end

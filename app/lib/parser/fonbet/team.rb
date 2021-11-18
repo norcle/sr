@@ -1,4 +1,5 @@
 class Parser::Fonbet::Team
+  class EmptyTeamsError < StandardError; end
   @@teams = {}
 
   def initialize(team_id:, team_names:, league:)
@@ -8,6 +9,7 @@ class Parser::Fonbet::Team
   end
 
   def parse
+    return nil if @team_id == 0
     p create_team
   end
 
@@ -19,9 +21,7 @@ class Parser::Fonbet::Team
 
   def create_team
     return read_cache if read_cache
-
     team = Team.find_by(external_id: @team_id)
-
     if team.nil?
       team = Team.find_or_create_by! name_ru: @team_names[:ru],
                                      name_en: @team_names[:en],
@@ -36,7 +36,7 @@ class Parser::Fonbet::Team
   end
 
   def slug
-    "#{@team_names[:en].downcase.delete('.').delete('-').gsub(' ', '_').html_safe}_#{@team_id}"
+    "#{@team_names[:en].downcase.delete('.').delete('-').gsub(' ', '_').html_safe}_#{@team_id}" unless  @team_names[:ru].nil? || @team_names[:en].nil?
   end
 
   def read_cache

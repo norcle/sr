@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 2021_10_15_172057) do
     t.bigint "league_id", null: false
     t.bigint "sport_id", null: false
     t.integer "level", default: 1, null: false
-    t.bigint "team1_id", null: false
-    t.bigint "team2_id", null: false
+    t.bigint "team1_id"
+    t.bigint "team2_id"
     t.string "slug"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
