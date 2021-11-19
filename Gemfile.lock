@@ -71,6 +71,10 @@ GEM
     anycable-core (1.1.4)
       anyway_config (>= 2.1.0)
       google-protobuf (>= 3.13)
+    anycable-rails (1.1.4)
+      actioncable (>= 5.1)
+      anycable (~> 1.1)
+      globalid
     anyway_config (2.2.2)
       ruby-next-core (>= 0.11.0)
     bindex (0.8.1)
@@ -258,7 +262,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate (~> 3.1)
-  anycable
+  anycable-rails
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
