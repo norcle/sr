@@ -15,7 +15,7 @@ class Cable extends React.Component {
             {channel: 'MatchChannel'},
             {
                 received (data) {
-                    this.updateMatchList(data);
+                    console.log(data);
                 },
                 connected () {
                     console.log('connected')

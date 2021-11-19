@@ -27,7 +27,6 @@ import ActionCable from 'actioncable'
 
 
 document.addEventListener("DOMContentLoaded", function(){
-    console.log('Hello world');
     ReactDOM.render(
         <Cable/>,
         document.getElementById('root')

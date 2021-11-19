@@ -26,6 +26,8 @@ services:
   rpc:
     <<: *backend
     command: bundle exec anycable --debug --log-level debug  --rpc-host="0.0.0.0:50051"
+    environment:
+      - REDIS_URL=redis://redis:6379/0
     ports:
       - "50051:50051"
 
