@@ -17,11 +17,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import Cable from '../components/cable'
+
+window.App = {};
+import ActionCable from 'actioncable'
+(function() {
+    window.App.cable = ActionCable.createConsumer("ws://localhost:8080/cable");
+}).call(this);
+
 
 document.addEventListener("DOMContentLoaded", function(){
     console.log('Hello world');
     ReactDOM.render(
-        <h1>Привет, мир!123</h1>,
+        <Cable/>,
         document.getElementById('root')
     );
 });

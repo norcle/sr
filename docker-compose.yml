@@ -10,6 +10,25 @@ services:
     ports:
       - "5432:5432"
 
+  app: &app
+    environment:
+      TZ: "Europe/Moscow"
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+
+  backend: &backend
+    <<: *app
+    environment:
+      CABLE_URL: ws://localhost:8080/cable
+      ADAPTER: any_cable
+
+  rpc:
+    <<: *backend
+    command: bundle exec anycable --debug --log-level debug  --rpc-host="0.0.0.0:50051"
+    ports:
+      - "50051:50051"
+
   anycable-go:
     image: anycable/anycable-go:latest
     ports:

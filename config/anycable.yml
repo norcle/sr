@@ -17,9 +17,9 @@ default: &default
   # This is the host and the port to run AnyCable RPC server on.
   # You must configure your WebSocket server to connect to it, e.g.:
   #   $ anycable-go --rpc-host="<rpc hostname>:50051"
-  rpc_host: "127.0.0.1:50051"
+  rpc_host: "0.0.0.0:50051"
   # Whether to enable gRPC level logging or not
-  log_grpc: false
+  log_grpc: true
   # Use Redis to broadcast messages to AnyCable server
   broadcast_adapter: redis
   # Use the same channel name for WebSocket server, e.g.:
