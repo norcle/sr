@@ -18,6 +18,17 @@ class Parser::Fonbet::Runner
     }
   end
 
+  def restart
+    stop
+    start
+  end
+
+  def problem?
+    return true if status[:event].nil? ||  status[:event] == false ||  status[:event] == 'aborting'
+    return true if status[:factor].nil? ||  status[:factor] == false ||  status[:factor] == 'aborting'
+    return true if status[:getter].nil? ||  status[:getter] == false ||  status[:getter] == 'aborting'
+  end
+
   def start
     @getter.start
     event_parser

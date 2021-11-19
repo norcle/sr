@@ -3,8 +3,8 @@ namespace :fonbet do
   task run: :environment do
     run = Parser::Fonbet::Runner.new
     run.start
-    loop do
-      puts run.status
+      p run.status
+      run.restart if run.problem?
       sleep 5
     end
   end
