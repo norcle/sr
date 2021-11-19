@@ -65,6 +65,18 @@ GEM
     annotate (3.1.1)
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
+    anycable (1.1.4)
+      anycable-core (= 1.1.4)
+      grpc (~> 1.37)
+    anycable-core (1.1.4)
+      anyway_config (>= 2.1.0)
+      google-protobuf (>= 3.13)
+    anycable-rails (1.1.4)
+      actioncable (>= 5.1)
+      anycable (~> 1.1)
+      globalid
+    anyway_config (2.2.2)
+      ruby-next-core (>= 0.11.0)
     bindex (0.8.1)
     bootsnap (1.9.1)
       msgpack (~> 1.0)
@@ -100,6 +112,12 @@ GEM
     ffi (1.15.4)
     globalid (0.5.2)
       activesupport (>= 5.0)
+    google-protobuf (3.19.1-x86_64-darwin)
+    googleapis-common-protos-types (1.3.0)
+      google-protobuf (~> 3.14)
+    grpc (1.41.1-universal-darwin)
+      google-protobuf (~> 3.17)
+      googleapis-common-protos-types (~> 1.0)
     hashdiff (1.0.1)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
@@ -163,6 +181,7 @@ GEM
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.5.1)
     regexp_parser (2.1.1)
     rexml (3.2.5)
     rspec-core (3.10.1)
@@ -182,6 +201,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
+    ruby-next-core (0.13.1)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -197,6 +217,13 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
+    slim (4.1.0)
+      temple (>= 0.7.6, < 0.9)
+      tilt (>= 2.0.6, < 2.1)
+    slim-rails (3.3.0)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      slim (>= 3.0, < 5.0)
     spring (3.0.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -205,6 +232,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    temple (0.8.2)
     thor (1.1.0)
     tilt (2.0.10)
     turbolinks (5.2.1)
@@ -242,6 +270,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate (~> 3.1)
+  anycable-rails
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
@@ -256,10 +285,12 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.1)
+  redis
   rexml
   rspec-rails (~> 5.0)
   sass-rails (>= 6)
   selenium-webdriver
+  slim-rails
   spring
   turbolinks (~> 5)
   tzinfo-data
