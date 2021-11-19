@@ -5,10 +5,7 @@ namespace :fonbet do
     run.start
     loop do
       p run.status
-      if run.status[:getter].nil? || run.status[:event].nil? || run.status[:factor].nil?
-        run.stop
-        run.start
-      end
+      run.restart if run.problem?
       sleep 5
     end
   end
