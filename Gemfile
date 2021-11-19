@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'rexml'
 gem "anycable-rails"
 gem 'redis'
+gem 'slim-rails'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 
