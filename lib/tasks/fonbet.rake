@@ -8,13 +8,4 @@ namespace :fonbet do
       sleep 5
     end
   end
-
-  desc "TODO"
-  task stop: :environment do
-  end
-
-  desc "TODO"
-  task status: :environment do
-  end
-
 end
