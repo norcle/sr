@@ -4,7 +4,11 @@ namespace :fonbet do
     run = Parser::Fonbet::Runner.new
     run.start
     loop do
-      puts run.status
+      p run.status
+      if run.status[:getter].nil? || run.status[:event].nil? || run.status[:factor].nil?
+        run.stop
+        run.start
+      end
       sleep 5
     end
   end
