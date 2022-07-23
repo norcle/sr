@@ -54,6 +54,7 @@ class Parser::Fonbet::Event::Entity
   end
 
   def team2
+    byebug
     @team2 ||= Parser::Fonbet::Team.new(team_id: team_id(2), team_names: team_names(2), league: league).parse
   end
 
