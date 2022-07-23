@@ -1,5 +1,5 @@
 class Parser::Fonbet::Getter
-  HOST = 'line18.bkfon-resources.com'.freeze
+  HOST = 'line01w.bk6bba-resources.com'.freeze
   attr_reader :live_thread
 
   def initialize(sleep_time: 0.5, enable_loop: true)
@@ -47,6 +47,7 @@ class Parser::Fonbet::Getter
   end
 
   def url(lang:, type:)
-    "http://#{HOST}/#{type}/updatesFromVersion/4507896552/#{lang}/?dd5qwvz0l7skgtodpic"
+    # "http://#{HOST}/#{type}/updatesFromVersion/4507896552/#{lang}/?dd5qwvz0l7skgtodpic"
+    "https://#{HOST}/events/list?lang=#{lang}&version=8702158131"
   end
 end

@@ -4,52 +4,52 @@ services:
   db:
     image: postgres:13.3
     volumes:
-      - db_data:/var/lib/postgresql/sr
+      - db_data:/var/lib/postgresql/nft
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
     ports:
       - "5432:5432"
 
-  app: &app
-    environment:
-      TZ: "Europe/Moscow"
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-
-  backend: &backend
-    <<: *app
-    environment:
-      CABLE_URL: ws://localhost:8080/cable
-      ADAPTER: any_cable
-
-  rpc:
-    <<: *backend
-    command: bundle exec anycable --debug --log-level debug  --rpc-host="0.0.0.0:50051"
-    environment:
-      - REDIS_URL=redis://redis:6379/0
-    ports:
-      - "50051:50051"
-
-  anycable-go:
-    image: anycable/anycable-go:latest
-    ports:
-      - "8080:8080"
-    environment:
-      - ANYCABLE_HOST=0.0.0.0
-      - ANYCABLE_RPC_HOST=rpc:50051
-      - REDIS_URL=redis://redis:6379/0
-
-  redis:
-    image: "redis:alpine"
-    command: redis-server
-    ports:
-      - "6379:6379"
-    volumes:
-      - $PWD/redis-data:/var/lib/redis
-        - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+#  app: &app
 #    environment:
-#      - REDIS_REPLICATION_MODE=master
+#      TZ: "Europe/Moscow"
+#    build:
+#      context: .
+#      dockerfile: ./Dockerfile
+#
+#  backend: &backend
+#    <<: *app
+#    environment:
+#      CABLE_URL: ws://localhost:8080/cable
+#      ADAPTER: any_cable
+#
+#  rpc:
+#    <<: *backend
+#    command: bundle exec anycable --debug --log-level debug  --rpc-host="0.0.0.0:50051"
+#    environment:
+#      - REDIS_URL=redis://redis:6379/0
+#    ports:
+#      - "50051:50051"
+#
+#  anycable-go:
+#    image: anycable/anycable-go:latest
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      - ANYCABLE_HOST=0.0.0.0
+#      - ANYCABLE_RPC_HOST=rpc:50051
+#      - REDIS_URL=redis://redis:6379/0
+#
+#  redis:
+#    image: "redis:alpine"
+#    command: redis-server
+#    ports:
+#      - "6379:6379"
+#    volumes:
+#      - $PWD/redis-data:/var/lib/redis
+#        - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+##    environment:
+##      - REDIS_REPLICATION_MODE=master
 
 volumes:
   db_data:

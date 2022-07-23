@@ -1,9 +1,8 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Start Dev" type="CompoundRunConfigurationType">
     <toRun name="server" type="RailsRunConfigurationType" />
-    <toRun name="Docker" type="docker-deploy" />
-    <toRun name="webpacker-dev-server" type="RubyRunConfigurationType" />
     <toRun name="Fonbet Run" type="RakeRunConfigurationType" />
+    <toRun name="webpacker-dev-server" type="RubyRunConfigurationType" />
     <method v="2" />
   </configuration>
 </component>
