@@ -33,6 +33,11 @@ class Event < ApplicationRecord
 
   after_touch { p "Ooohh... You touch my talalal #{id}" }
 
+
+  def parent
+    Event.find(parent_id)
+  end
+
   enum state: {
     not_started: 1,
     live: 2,
@@ -40,30 +45,17 @@ class Event < ApplicationRecord
     cancelled: 4,
   }
 
-
-  def parent
-    Event.find(parent_id)
+  state_machine :state, initial: :not_started do
+    event :live_event do
+      transition not_started: :live
+    end
+    event :end_event do
+      # Должны быть записаны где-то результаты в БД
+      transition %i[live not_started] => :ended
+    end
+    event :cancel_event do
+      transition %i[not_started live] => :cancelled
+    end
   end
-
-  # state_machine :state, initial: :created do
-  #   event :confirm_payment do
-  #     transition created: :processing
-  #   end
-  #   event :pack do
-  #     transition processing: :ready
-  #   end
-  #   event :cancel do
-  #     transition %i[created processing ready] => :void
-  #   end
-  #   event :return do
-  #     transition delivered: :void
-  #   end
-  #   event :ship do
-  #     transition ready: :shipped
-  #   end
-  #   event :fail_delivery do
-  #     transition shipped: :processing
-  #   end
-  # end
 
 end
